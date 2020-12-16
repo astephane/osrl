@@ -15,11 +15,11 @@
 # along with OSRogueL (osrl).  If not, see <https://www.gnu.org/licenses/>.
 #
 
-cmake_minimum_required( VERSION 3.10 )
+cmake_minimum_required( VERSION 3.13 )
 
-project( osrl VERSION 0.0 )
+project( osrl VERSION 0.0.0 )
 
-set( CMAKE_CXX_STANDARD 17 )
+set( CMAKE_CXX_STANDARD 20 )
 set( CMAKE_CXX_STANDARD_REQUIRED ON )
 set( CMAKE_CXX_EXTENSIONS OFF )
 
