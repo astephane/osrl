@@ -20,7 +20,7 @@
 #pragma once
 
 #ifndef OSRL_HPP
-#define OSRL_HPP
+#define OSRL_HPP 0x54470000F233C0D3
 
 // TODO
 
