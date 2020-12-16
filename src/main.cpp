@@ -17,6 +17,8 @@
 // along with upicore.  If not, see <https://www.gnu.org/licenses/>.
 //
 
+#include "config.hpp"
+
 #include <cstdlib>
 #include <iostream>
 
@@ -27,7 +29,9 @@
 int
 main( int unused( argc ), char * unused( argv )[] )
 {
-  std::cout << "Welcome to OSRogueL" << std::endl;
+  std::cout
+    << "Welcome to OSRogueL version " OSRL_VERSION_STRING " distributed under the terms of the " OSRL_LICENCE
+    << std::endl;
 
   return EXIT_SUCCESS;
 }
