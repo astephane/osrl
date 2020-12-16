@@ -24,10 +24,9 @@ set( SOURCES
 add_executable( ${PROJECT_NAME} ${SOURCES} )
 
 message( "CMAKE_SOURCE_DIR=${CMAKE_SOURCE_DIR}" )
+message( "CMAKE_BINARY_DIR=${CMAKE_BINARY_DIR}" )
 
-target_include_directories( ${PROJECT_NAME}
-  PUBLIC ${CMAKE_SOURCE_DIR}/src )
-
-# target_include_directories( ${PROJECT_NAME}
-#   PUBLIC ${PROJECT_BINARY_DIR}/src
-#   )
+target_include_directories( ${PROJECT_NAME} PRIVATE
+    ${CMAKE_SOURCE_DIR}/src
+    ${CMAKE_BINARY_DIR}
+    )
