@@ -17,10 +17,24 @@
 // along with upicore.  If not, see <https://www.gnu.org/licenses/>.
 //
 
+#pragma once
 
-#define OSRL_VERSION_MAJOR @upicore_VERSION_MAJOR@
-#define OSRL_VERSION_MINOR @upicore_VERSION_MINOR@
+#ifndef OSRL_CONFIG
+#define OSRL_CONFIG 0x54470000F233C0D3
+
+#define OSRL_LICENCE "AGPLv3"
+
+#define OSRL_VERSION_STRING "@osrl_VERSION@"
+
+#define OSRL_VERSION @osrl_VERSION@
+
+#define OSRL_VERSION_MAJOR @osrl_VERSION_MAJOR@
+#define OSRL_VERSION_MINOR @osrl_VERSION_MINOR@
+#define OSRL_VERSION_PATCH @osrl_VERSION_PATCH@
+#define OSRL_VERSION_TWEAK @osrl_VERSION_TWEAK@
 
 // #if __cplusplus>=202002L
 // #elif __cplusplus>=201703L
 // #endif // __cplusplus
+
+#endif // OSRL_CONFIG
