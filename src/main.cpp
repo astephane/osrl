@@ -35,7 +35,7 @@ PRAGMA_WARNING_DISABLE_GCC_Wshadow;
 int
 libtcod_main( int unused( argc ), char * unused( argv )[] )
 {
-  TCODConsole::initRoot( 80, 25, "OSRogueL " OSRL_VERSION_STRING, false );
+  TCODConsole::initRoot( 80, 80, "OSRogueL " OSRL_VERSION_STRING, false );
 
   while( !TCODConsole::isWindowClosed() )
   {
@@ -45,7 +45,7 @@ libtcod_main( int unused( argc ), char * unused( argv )[] )
 
     TCODConsole::root->clear();
 
-    TCODConsole::root->putChar( 40, 12, '@' );
+    TCODConsole::root->putChar( 40, 40, '@' );
 
     TCODConsole::flush();
    }
