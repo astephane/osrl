@@ -1,3 +1,4 @@
 [submodule "mod/libascxx"]
 	path = mod/libascxx
 	url = ../libascxx.git
+    branch = master
