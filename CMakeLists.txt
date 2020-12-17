@@ -31,10 +31,11 @@ if( USE_LIBTCOD )
   add_compile_definitions( USE_LIBTCOD=$<BOOL:${USE_LIBTCOD}> )
 endif( USE_LIBTCOD )
 
-configure_file( config.hpp.in config.hpp )
+configure_file( osrl_config.hpp.in osrl_config.hpp )
 
 set( CMAKE_ARCHIVE_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/lib )
 set( CMAKE_LIBRARY_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/lib )
 set( CMAKE_RUNTIME_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/bin )
 
+add_subdirectory( mod )
 add_subdirectory( src )
