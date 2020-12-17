@@ -81,7 +81,7 @@ CMAKE_INSTALL_PREFIX:STRING=${PRJ_INSTALL_PREFIX}
 
 LIBTCOD_INCLUDE_DIRS:PATH=/usr/include/libtcod
 # LIBTCOD_LIBRARIES=/usr/lib/x86_64-linux-gnu/libtcod.so
-LIBTCOD_LIBRARIES=/usr/lib/x86_64-linux-gnu/libtcod.so /usr/lib/x86_64-linux-gnu/libtcodgui.so /usr/lib/x86_64-linux-gnu/libtcodxx.so
+LIBTCOD_LIBRARIES=/usr/lib/x86_64-linux-gnu/libtcod.so;/usr/lib/x86_64-linux-gnu/libtcodgui.so;/usr/lib/x86_64-linux-gnu/libtcodxx.so
 ")
 
 set( CTEST_NOTES_FILES
