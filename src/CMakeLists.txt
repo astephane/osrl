@@ -24,12 +24,18 @@ set( SOURCES
   )
 
 
-add_executable( ${PROJECT_NAME} ${SOURCES} )
-
 message( "CMAKE_SOURCE_DIR=${CMAKE_SOURCE_DIR}" )
 message( "CMAKE_BINARY_DIR=${CMAKE_BINARY_DIR}" )
+
+
+add_executable( ${PROJECT_NAME} ${SOURCES} )
 
 target_include_directories( ${PROJECT_NAME} PRIVATE
   ${CMAKE_SOURCE_DIR}/src
   ${CMAKE_BINARY_DIR}
+  $<$<BOOL:${USE_LIBTCOD}>:${LIBTCOD_INCLUDE_DIRS}>
+  )
+
+target_link_libraries( ${PROJECT_NAME} PRIVATE
+  $<$<BOOL:${USE_LIBTCOD}>:${LIBTCOD_LIBRARIES}>
   )
