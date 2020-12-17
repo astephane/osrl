@@ -37,6 +37,8 @@ libtcod_main( int unused( argc ), char * unused( argv )[] )
 {
   TCODConsole::initRoot( 80, 80, "OSRogueL " OSRL_VERSION_STRING, false );
 
+  // TCODConsole::root->setBackgroundFlag( TCOD_BKGND_COLOR_BURN );
+
   while( !TCODConsole::isWindowClosed() )
   {
     TCOD_key_t key;
@@ -49,6 +51,8 @@ libtcod_main( int unused( argc ), char * unused( argv )[] )
 
     TCODConsole::flush();
    }
+
+  // TCOD::quit();
 
   return EXIT_SUCCESS;
 }
