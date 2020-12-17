@@ -22,6 +22,18 @@
 #ifndef OSRL_CONFIG
 #define OSRL_CONFIG 0x54470000F233C0D3
 
+
+#define unused( x )
+
+#ifdef NDEBUG
+# define unused_debug( symbol ) symbol
+# define unused_release( symbol )
+#else // NDEBUG
+# define unused_debug( symbol )
+# define unused_release( symbol ) symbol
+#endif // NDEBUG
+
+
 #define OSRL_LICENCE "AGPLv3"
 
 #define OSRL_VERSION_STRING "@osrl_VERSION@"

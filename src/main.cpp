@@ -23,9 +23,6 @@
 #include <iostream>
 
 
-#define unused( x )
-
-
 int
 main( int unused( argc ), char * unused( argv )[] )
 {
