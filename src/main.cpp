@@ -44,6 +44,8 @@ libtcod_main( int unused( argc ), char * unused( argv )[] )
 
     TCODConsole::flush();
    }
+
+  return EXIT_SUCCESS;
 }
 
 #endif // USE_LIBTCOD
