@@ -8,7 +8,7 @@
 #
 # OSRogueL (osrl) is distributed in the hope that it will be useful,
 # but WITHOUT ANY WARRANTY; without even the implied warranty of
-# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.	See the
 # GNU Lesser General Public License for more details.
 #
 # You should have received a copy of the GNU Lesser General Public License
@@ -16,10 +16,11 @@
 #
 
 set( SOURCES
-    main.cpp
-    osrl.hpp
-    osrl.cpp
-    )
+  main.cpp
+  osrl.hpp
+  osrl.cpp
+  )
+
 
 add_executable( ${PROJECT_NAME} ${SOURCES} )
 
@@ -27,6 +28,6 @@ message( "CMAKE_SOURCE_DIR=${CMAKE_SOURCE_DIR}" )
 message( "CMAKE_BINARY_DIR=${CMAKE_BINARY_DIR}" )
 
 target_include_directories( ${PROJECT_NAME} PRIVATE
-    ${CMAKE_SOURCE_DIR}/src
-    ${CMAKE_BINARY_DIR}
-    )
+  ${CMAKE_SOURCE_DIR}/src
+  ${CMAKE_BINARY_DIR}
+  )
