@@ -20,8 +20,246 @@
 #pragma once
 
 #ifndef ECS_HPP
-#define ECSL_HPP 0x54470000F233C0D3
+#define ECS_HPP 0x54470000F233C0D3
 
-// TODO
+
+#include <map>
+#include <vector>
+
+
+namespace osrl
+{
+  struct entity
+  {
+  };
+
+  struct component
+  {
+  };
+
+  struct system
+  {
+  };
+} // osrl
+
+
+//
+// See Bob "munificent" Nystrom: https://www.youtube.com/watch?v=JxI3Eu5DPwE
+// See Bob "munificent" Nystrom: http://gameprogrammingpatterns.com/
+//
+namespace munificent::ecs
+{
+
+  //
+  // Patterns:
+  // 1. Components:
+  //    use components to represent capabilities
+  // 2. Type Objects:
+  //    define your own type where each instance represents a type
+  // 3. Command Objects:
+  //    when in doubt, try turning operation (verb) into an object
+  //    (noun).
+  //
+
+  struct capability : public osrl::component
+  {
+  };
+
+  struct attack : public capability
+  {
+    int min_dmg;
+    int max_dmg;
+
+    void hit();
+  };
+
+  struct defense : public capability
+  {
+    int armor;
+    int dodge;
+
+    void defend();
+  };
+
+  /* abstract */
+  struct use : public capability
+  {
+    virtual void operator () ();
+  };
+
+  struct hero;
+
+  struct heal_use : public use
+  {
+    void operator () () override
+      {
+        hero->health += 20;
+      }
+
+    hero * hero_;
+  };
+
+  struct fireball_use : public use
+  {
+    void operator () () override
+      {
+        // cast fireball
+      }
+  };
+
+  // Closure.
+  struct action
+  {
+    using effect = void;
+
+    result perform();
+  };
+
+  struct item : public osrl::component
+  {
+    attack melee;
+    attack ranged;
+    defense d;
+    std::map< action, use > u;
+  };
+
+  void items()
+  {
+    item sword = {
+      { 10, 20 },
+      {},
+      {},
+      {},
+    };
+
+    item crossbow = {
+      {},
+      { 10, 20 },
+      {},
+      {},
+    };
+
+    item shield = {
+      { 5, 8 },
+      {},
+      { 3, 0 },
+      {},
+    };
+
+    item heal_potion = {
+      {},
+      {},
+      {},
+      { { quaff_action(), heal_use() }
+      },
+    };
+
+    item fire_sword = {
+      { 30, 40 },
+      {},
+      {},
+      { { activate_action(), fireball_use() }
+      },
+    };
+  }
+
+  struct type_object
+  {
+  };
+
+  // type-object pattern.
+  struct breed : public type_object
+  {
+    std::string name;
+    int max_health;
+    // Factorize these ones in class
+    // {
+    attack melee;
+    attack ranged;
+    attack defense;
+    // }
+    std::list< use > moves;
+    std::set< string > flags;
+    drop loot;
+  };
+
+  // function-object (lambda + captures)
+  struct actor : public osrl::entity
+  {
+    int x;
+    int y;
+
+    // Bad
+    // {
+#if 0
+    void walk();
+    void attack();
+    void open();
+    void close();
+    void eat();
+    void quaff();
+    void teleport();
+    void fireball();
+#endif
+    // }
+  };
+
+  struct monster : public actor
+  {
+    breed b;
+    int health;
+
+    void take_turn()
+      {
+        // pathfinding, ai, etc.
+      }
+  };
+
+  struct hero_class : public type_object
+  {
+  };
+
+  struct hero : public actor
+  {
+    hero_class class_;
+
+    action take_turn( char key )
+      {
+        switch( key )
+        {
+        case 'd':
+          return drop_action();
+          break;
+
+        case 'u':
+          return use_action();
+          break;
+
+        case 'r':
+          return rest_action();
+          break;
+
+        default:
+          break;
+        }
+      }
+  };
+
+  void game_loop()
+  {
+    std::vector< actor > actors;
+
+    for( a & : actors )
+    {
+      a.gain_energy( a.speed );
+
+      if( a.has_enough_energy() )
+      {
+        action act = a.take_turn();
+        act.perform();
+      }
+    }
+  }
+} // munificent::ecs
 
 #endif // ECS_HPP
