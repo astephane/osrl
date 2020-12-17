@@ -1,5 +1,5 @@
 //
-// Copyright 2020 a.stephane.fsw@gmail.com
+// Copyright 2020 Stéphane ALBERT
 //
 // This file is part of OSRogueL (osrl).
 //

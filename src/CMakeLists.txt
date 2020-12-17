@@ -1,4 +1,6 @@
 #
+# Copyright 2020 Stéphane ALBERT
+#
 # This file is part of OSRogueL (osrl).
 #
 # OSRogueL (osrl) is free software: you can redistribute it and/or modify
