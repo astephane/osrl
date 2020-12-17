@@ -18,10 +18,11 @@
 #
 
 set( SOURCES
-  main.cpp
-  osrl.hpp
-  osrl.cpp
-  )
+    main.cpp
+    ecs.cpp
+    osrl.hpp
+    osrl.cpp
+    )
 
 
 message( "CMAKE_SOURCE_DIR=${CMAKE_SOURCE_DIR}" )
