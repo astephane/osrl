@@ -24,7 +24,6 @@
 #include <cstdlib>
 #include <iostream>
 
-
 #if USE_LIBTCOD
 
 PRAGMA_WARNING_PUSH;
@@ -32,12 +31,28 @@ PRAGMA_WARNING_DISABLE_GCC_Wshadow;
 
 #include <libtcod.hpp>
 
+namespace
+{
+  constexpr int width() noexcept
+  {
+    return 80;
+  }
+
+  constexpr int height() noexcept
+  {
+    return 80;
+  }
+} // namespsace
+
 int
 libtcod_main( int unused( argc ), char * unused( argv )[] )
 {
-  TCODConsole::initRoot( 80, 80, "OSRogueL " OSRL_VERSION_STRING, false );
+  TCODConsole::initRoot( width(), height(), "OSRogueL " OSRL_VERSION_STRING, false );
 
   // TCODConsole::root->setBackgroundFlag( TCOD_BKGND_COLOR_BURN );
+
+  int x = width() / 2;
+  int y = height() / 2;
 
   while( !TCODConsole::isWindowClosed() )
   {
@@ -45,9 +60,31 @@ libtcod_main( int unused( argc ), char * unused( argv )[] )
 
     TCODSystem::checkForEvent( TCOD_EVENT_KEY_PRESS, &key, nullptr );
 
+    switch( key.vk )
+    {
+    case TCODK_UP:
+      y = std::max( 0, y - 1 );
+      break;
+
+    case TCODK_DOWN:
+      y = std::min( height() - 1, y + 1 );
+      break;
+
+    case TCODK_LEFT:
+      x = std::max( 0, x - 1 );
+      break;
+
+    case TCODK_RIGHT:
+      x = std::min( width() - 1, x + 1 );
+      break;
+
+    default:
+      break;
+    }
+
     TCODConsole::root->clear();
 
-    TCODConsole::root->putChar( 40, 40, '@' );
+    TCODConsole::root->putChar( x, y, '@' );
 
     TCODConsole::flush();
    }
