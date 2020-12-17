@@ -17,7 +17,7 @@
 // along with OSRogueL (osrl).  If not, see <https://www.gnu.org/licenses/>.
 //
 
-#include "config.hpp"
+#include "osrl_config.hpp"
 
 #include "pp.hpp"
 
