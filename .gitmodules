@@ -1,0 +1,3 @@
+[submodule "mod/libascxx"]
+	path = mod/libascxx
+	url = https://github.com/astephane/libascxx.git
