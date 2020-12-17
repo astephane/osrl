@@ -23,12 +23,46 @@
 #include <iostream>
 
 
+#if USE_LIBTCOD
+
+#include <libtcod.hpp>
+
 int
-main( int unused( argc ), char * unused( argv )[] )
+libtcod_main( int unused( argc ), char * unused( argv )[] )
+{
+  TCODConsole::initRoot( 80, 50, "OSRogueL " OSRL_VERSION_STRING, false );
+
+  while( !TCODConsole::isWindowClosed() )
+  {
+    TCOD_key_t key;
+
+    TCODSystem::checkForEvent( TCOD_EVENT_KEY_PRESS, &key, nullptr );
+
+    TCODConsole::root->clear();
+
+    TCODConsole::root->putChar( 40, 25, '@' );
+
+    TCODConsole::flush();
+   }
+}
+
+#endif // USE_LIBTCOD
+
+
+int
+main( int argc, char * argv[] )
 {
   std::cout
     << "Welcome to OSRogueL version " OSRL_VERSION_STRING " distributed under the terms of the " OSRL_LICENCE
     << std::endl;
 
+#if USE_LIBTCOD
+  std::cout << "USE_LIBTCOD" << std::endl;
+
+  return libtcod_main( argc, argv );
+
+#else // USE_LIBTCOD
   return EXIT_SUCCESS;
+
+#endif // USE_LIBTCOD
 }
