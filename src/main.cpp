@@ -19,18 +19,23 @@
 
 #include "config.hpp"
 
+#include "pp.hpp"
+
 #include <cstdlib>
 #include <iostream>
 
 
 #if USE_LIBTCOD
 
+PRAGMA_WARNING_PUSH;
+PRAGMA_WARNING_DISABLE_GCC_Wshadow;
+
 #include <libtcod.hpp>
 
 int
 libtcod_main( int unused( argc ), char * unused( argv )[] )
 {
-  TCODConsole::initRoot( 80, 50, "OSRogueL " OSRL_VERSION_STRING, false );
+  TCODConsole::initRoot( 80, 25, "OSRogueL " OSRL_VERSION_STRING, false );
 
   while( !TCODConsole::isWindowClosed() )
   {
@@ -40,13 +45,15 @@ libtcod_main( int unused( argc ), char * unused( argv )[] )
 
     TCODConsole::root->clear();
 
-    TCODConsole::root->putChar( 40, 25, '@' );
+    TCODConsole::root->putChar( 40, 12, '@' );
 
     TCODConsole::flush();
    }
 
   return EXIT_SUCCESS;
 }
+
+PRAGMA_WARNING_POP;
 
 #endif // USE_LIBTCOD
 
@@ -59,8 +66,6 @@ main( int argc, char * argv[] )
     << std::endl;
 
 #if USE_LIBTCOD
-  std::cout << "USE_LIBTCOD" << std::endl;
-
   return libtcod_main( argc, argv );
 
 #else // USE_LIBTCOD
