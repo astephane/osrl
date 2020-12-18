@@ -20,7 +20,6 @@
 #include "game.hpp"
 
 
-#include "actor.hpp"
 #include "action.hpp"
 
 #include <cassert>
