@@ -26,6 +26,7 @@
 #include "component.hpp"
 #include "entity.hpp"
 
+#include <cassert>
 #include <memory>
 
 
@@ -40,11 +41,23 @@ namespace osrl
     using action_pointer = std::unique_ptr< action >;
     using input_pointer = std::weak_ptr< in_component >;
 
-    actor( input_pointer && in_ ) : in( std::move( in_ ) ) {}
+    actor( input_pointer && in_ ) noexcept : in( std::move( in_ ) ) {}
 
-    virtual action_pointer get_action() = 0;
+    void set_next_action( action_pointer && a ) noexcept
+    {
+      assert( a );
+      assert( !next_action );
+
+      next_action = std::move( a );
+    }
+
+    action_pointer get_next_action()
+    {
+      return std::move( next_action );
+    }
 
     input_pointer in;
+    action_pointer next_action;
   };
 
 
@@ -59,8 +72,6 @@ namespace osrl
     using input_pointer = std::weak_ptr< human_component >;
 
     hero( input_pointer && in_ ) : character( std::move( in_ ) ) {}
-
-    action_pointer get_action() override;
   };
 
 
@@ -69,8 +80,6 @@ namespace osrl
     using input_pointer = std::weak_ptr< ai_component >;
 
     monster( input_pointer && in_ ) : character( std::move( in_ ) ) {}
-
-    action_pointer get_action() override;
   };
 
 
