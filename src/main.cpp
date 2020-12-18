@@ -32,14 +32,6 @@
 namespace osrl
 {
 
-  struct move_action : public action
-  {
-  };
-
-  struct rest_action : public action
-  {
-  };
-
   struct actor : public entity
   {
     virtual action get_action() = 0;

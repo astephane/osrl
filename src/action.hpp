@@ -38,6 +38,14 @@ namespace osrl
     result perform();
   };
 
+  struct move_action : public action
+  {
+  };
+
+  struct rest_action : public action
+  {
+  };
+
 } // osrl
 
 
