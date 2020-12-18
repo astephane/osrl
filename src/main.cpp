@@ -20,7 +20,7 @@
 #include "osrl_config.hpp"
 
 
-#include "action.hpp"
+#include "actor.hpp"
 #include "pp.hpp"
 #include "vec2.hpp"
 
@@ -31,11 +31,6 @@
 
 namespace osrl
 {
-
-  struct actor : public entity
-  {
-    virtual action get_action() = 0;
-  };
 
   struct character : public actor
   {

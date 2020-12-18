@@ -22,12 +22,13 @@
 #ifndef OSRL_ACTOR_HPP
 #define OSRL_ACTOR_HPP 0x54470000F233C0D3
 
-#include "ecs.hpp"
+#include "action.hpp"
 
 namespace osrl
 {
   struct actor : public entity
   {
+    virtual action get_action() = 0;
   };
 
 } // osrl
