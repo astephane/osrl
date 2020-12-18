@@ -29,12 +29,13 @@ add_executable( ${TARGET_NAME} ${SOURCES} )
 
 target_include_directories( ${TARGET_NAME} PRIVATE
   ${CMAKE_SOURCE_DIR}/test
-  # ${CMAKE_SOURCE_DIR}/mod/libascxx/src
+  ${CMAKE_SOURCE_DIR}/mod/catch2/single_include
   ${CMAKE_BINARY_DIR}
   # ${CMAKE_BINARY_DIR}/mod/libascxx
   # $<$<BOOL:${USE_LIBTCOD}>:${LIBTCOD_INCLUDE_DIRS}>
   )
 
 target_link_libraries( ${TARGET_NAME} PRIVATE
+  # Catch2::Catch2
   # $<$<BOOL:${USE_LIBTCOD}>:${LIBTCOD_LIBRARIES}>
   )
