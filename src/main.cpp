@@ -20,6 +20,7 @@
 #include "osrl_config.hpp"
 
 #include "pp.hpp"
+#include "vec2.hpp"
 
 #include <cstdlib>
 #include <iostream>
@@ -52,8 +53,10 @@ libtcod_main( int unused( argc ), char * unused( argv )[] )
 
   // TCODConsole::root->setBackgroundFlag( TCOD_BKGND_COLOR_BURN );
 
-  int x = width() / 2;
-  int y = height() / 2;
+  osrl::vec2< int > pos(
+    width() / 2,
+    height() / 2
+    );
 
   while( !TCODConsole::isWindowClosed() )
   {
@@ -64,19 +67,19 @@ libtcod_main( int unused( argc ), char * unused( argv )[] )
     switch( key.vk )
     {
     case TCODK_UP:
-      y = std::max( 0, y - 1 );
+      pos.y = std::max( 0, pos.y - 1 );
       break;
 
     case TCODK_DOWN:
-      y = std::min( height() - 1, y + 1 );
+      pos.y = std::min( height() - 1, pos.y + 1 );
       break;
 
     case TCODK_LEFT:
-      x = std::max( 0, x - 1 );
+      pos.x = std::max( 0, pos.x - 1 );
       break;
 
     case TCODK_RIGHT:
-      x = std::min( width() - 1, x + 1 );
+      pos.x = std::min( width() - 1, pos.x + 1 );
       break;
 
     default:
@@ -85,7 +88,7 @@ libtcod_main( int unused( argc ), char * unused( argv )[] )
 
     TCODConsole::root->clear();
 
-    TCODConsole::root->putChar( x, y, '@' );
+    TCODConsole::root->putChar( pos.x, pos.y, '@' );
 
     TCODConsole::flush();
    }
