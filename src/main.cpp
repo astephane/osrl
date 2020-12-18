@@ -51,7 +51,7 @@ namespace
 int
 libtcod_main( int unused( argc ), char * unused( argv )[] )
 {
-  TCODConsole::initRoot( width(), height(), "OSRogueL " OSRL_VERSION_STRING, false );
+  TCODConsole::initRoot( width(), height(), "\"Blackhawk\" OSRogueL " OSRL_VERSION_STRING, false );
 
   // TCODConsole::root->setBackgroundFlag( TCOD_BKGND_COLOR_BURN );
   osrl::game game;
