@@ -40,12 +40,17 @@ namespace osrl
     result perform();
   };
 
+  struct move_action : public action
+  {
+  };
+
+  struct rest_action : public action
+  {
+  };
+
   struct actor : public entity
   {
-    action get_action()
-    {
-      return {};
-    }
+    virtual action get_action() = 0;
   };
 
   struct character : public actor
@@ -55,6 +60,11 @@ namespace osrl
   struct hero : public character
   {
     component input;
+
+    action get_action() override
+    {
+      return rest_action();
+    }
   };
 
   struct npc : public character
