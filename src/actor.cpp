@@ -17,5 +17,19 @@
 // License along with racatoma.  If not, see
 // <https://www.gnu.org/licenses/>.
 //
-
 #include "actor.hpp"
+
+#include "action.hpp"
+
+namespace osrl
+{
+
+  actor::action_pointer
+  hero
+  ::get_action()
+  {
+    // Wait.
+    return nullptr;
+  }
+
+} // osrl

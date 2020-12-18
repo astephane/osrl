@@ -22,15 +22,23 @@
 #ifndef OSRL_ACTOR_HPP
 #define OSRL_ACTOR_HPP 0x54470000F233C0D3
 
-#include "action.hpp"
+
 #include "component.hpp"
 #include "entity.hpp"
 
+#include <memory>
+
+
 namespace osrl
 {
+
+  struct action;
+
   struct actor : public entity
   {
-    virtual action get_action() = 0;
+    using action_pointer = std::unique_ptr< action >;
+
+    virtual action_pointer get_action() = 0;
   };
 
   struct character : public actor
@@ -41,10 +49,7 @@ namespace osrl
   {
     component input;
 
-    action get_action() override
-    {
-      return rest_action();
-    }
+    action_pointer get_action() override;
   };
 
   struct npc : public character
