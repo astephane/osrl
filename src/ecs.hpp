@@ -19,8 +19,8 @@
 
 #pragma once
 
-#ifndef ECS_HPP
-#define ECS_HPP 0x54470000F233C0D3
+#ifndef OSRL_ECS_HPP
+#define OSRL_ECS_HPP 0x54470000F233C0D3
 
 
 #include <list>
@@ -46,4 +46,4 @@ namespace osrl
 } // osrl
 
 
-#endif // ECS_HPP
+#endif // OSRL_ECS_HPP
