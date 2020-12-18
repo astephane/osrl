@@ -26,7 +26,7 @@
 #include "actor.hpp"
 
 #include <memory>
-
+#include <vector>
 
 namespace osrl
 {
