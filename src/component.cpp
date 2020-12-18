@@ -19,3 +19,13 @@
 //
 
 #include "component.hpp"
+
+namespace osrl
+{
+
+  component
+  ::~component()
+  {
+  }
+
+} // osrl

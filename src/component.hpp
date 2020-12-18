@@ -28,6 +28,15 @@ namespace osrl
 
   struct component
   {
+    virtual ~component();
+  };
+
+  struct input_component : public component
+  {
+  };
+
+  struct keyboard_component : public component
+  {
   };
 
 } // osrl
