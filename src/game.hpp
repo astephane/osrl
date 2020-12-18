@@ -54,6 +54,7 @@ namespace osrl
     }
 #endif
 
+    void update_input();
     void process();
 
     using actor_pointer = std::unique_ptr< actor >;
@@ -62,7 +63,7 @@ namespace osrl
     actor_vector actors;
     actor_vector::size_type current;
 
-    monster::input_pointer monster_input;
+    std::shared_ptr< ai_component > monster_input;
   };
 
 } // osrl

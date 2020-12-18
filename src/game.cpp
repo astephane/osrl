@@ -23,6 +23,7 @@
 #include "action.hpp"
 #include "memory.hpp"
 
+#include <algorithm>
 #include <cassert>
 
 
@@ -36,7 +37,27 @@ namespace osrl
     actors.reserve( 2 );
 
     actors.push_back( std::make_unique< hero >( std::move( in_ ) ) );
-    actors.push_back( std::make_unique< monster >( std::make_shared< ai_component >() ) );
+    actors.push_back( std::make_unique< monster >( monster_input ) );
+  }
+
+  void
+  game
+  ::update_input()
+  {
+    std::for_each(
+      std::begin( actors ),
+      std::end( actors ),
+      []( auto & a ) {
+
+	assert( a );
+
+	auto in = a->in.lock();
+
+	assert( in );
+
+	in->update( *a );
+      }
+      );
   }
 
   void
