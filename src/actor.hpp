@@ -31,6 +31,28 @@ namespace osrl
     virtual action get_action() = 0;
   };
 
+  struct character : public actor
+  {
+  };
+
+  struct hero : public character
+  {
+    component input;
+
+    action get_action() override
+    {
+      return rest_action();
+    }
+  };
+
+  struct npc : public character
+  {
+  };
+
+  struct monster : public actor
+  {
+  };
+
 } // osrl
 
 
