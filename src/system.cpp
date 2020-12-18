@@ -19,3 +19,14 @@
 //
 
 #include "system.hpp"
+
+
+namespace osrl
+{
+
+  system
+  ::~system()
+  {
+  }
+
+} // osrl

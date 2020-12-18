@@ -29,6 +29,7 @@ namespace osrl
 
   struct system
   {
+    virtual ~system();
   };
 
 } // osrl
