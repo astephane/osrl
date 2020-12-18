@@ -20,7 +20,7 @@
 #include "osrl_config.hpp"
 
 
-#include "ecs.hpp"
+#include "action.hpp"
 #include "pp.hpp"
 #include "vec2.hpp"
 
@@ -31,14 +31,6 @@
 
 namespace osrl
 {
-
-  // Command design-pattern
-  struct action : osrl::system
-  {
-    using result = bool;
-
-    result perform();
-  };
 
   struct move_action : public action
   {
