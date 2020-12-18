@@ -10,11 +10,11 @@
 //
 // OSRogueL (osrl) is distributed in the hope that it will be useful,
 // but WITHOUT ANY WARRANTY; without even the implied warranty of
-// MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+// MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.	 See the
 // GNU Affero General Public License for more details.
 //
 // You should have received a copy of the GNU Affero General Public License
-// along with OSRogueL (osrl).  If not, see <https://www.gnu.org/licenses/>.
+// along with OSRogueL (osrl).	If not, see <https://www.gnu.org/licenses/>.
 //
 
 #pragma once
@@ -23,7 +23,10 @@
 #define ECS_HPP 0x54470000F233C0D3
 
 
+#include <list>
 #include <map>
+#include <set>
+#include <string>
 #include <vector>
 
 
@@ -53,12 +56,12 @@ namespace munificent::ecs
   //
   // Patterns:
   // 1. Components:
-  //    use components to represent capabilities
+  //	use components to represent capabilities
   // 2. Type Objects:
-  //    define your own type where each instance represents a type
+  //	define your own type where each instance represents a type
   // 3. Command Objects:
-  //    when in doubt, try turning operation (verb) into an object
-  //    (noun).
+  //	when in doubt, try turning operation (verb) into an object
+  //	(noun).
   //
 
   struct capability : public osrl::component
@@ -81,38 +84,54 @@ namespace munificent::ecs
     void defend();
   };
 
-  /* abstract */
+/* abstract */
   struct use : public capability
   {
     virtual void operator () ();
   };
 
-  struct hero;
+// struct hero;
 
   struct heal_use : public use
   {
     void operator () () override
-      {
-        hero->health += 20;
-      }
+    {
+// hero->health += 20;
+    }
 
-    hero * hero_;
+// hero * hero_;
   };
 
   struct fireball_use : public use
   {
     void operator () () override
-      {
-        // cast fireball
-      }
+    {
+// cast fireball
+    }
   };
 
-  // Closure.
+// Closure.
   struct action
   {
     using effect = void;
 
-    result perform();
+    effect perform()
+    {
+      // return {};
+    }
+  };
+
+
+  struct drop_action : public action
+  {
+  };
+
+  struct use_action : public action
+  {
+  };
+
+  struct rest_action : public action
+  {
   };
 
   struct item : public osrl::component
@@ -125,6 +144,7 @@ namespace munificent::ecs
 
   void items()
   {
+#if 0
     item sword = {
       { 10, 20 },
       {},
@@ -161,36 +181,51 @@ namespace munificent::ecs
       { { activate_action(), fireball_use() }
       },
     };
+#endif
   }
 
   struct type_object
   {
   };
 
-  // type-object pattern.
+// type-object pattern.
   struct breed : public type_object
   {
     std::string name;
     int max_health;
-    // Factorize these ones in class
-    // {
+// Factorize these ones in class
+// {
     attack melee;
     attack ranged;
     attack defense;
-    // }
+// }
     std::list< use > moves;
-    std::set< string > flags;
+    std::set< std::string > flags;
+#if 0
     drop loot;
+#endif
   };
 
-  // function-object (lambda + captures)
+// function-object (lambda + captures)
   struct actor : public osrl::entity
   {
     int x;
     int y;
+    int speed;
 
-    // Bad
-    // {
+    virtual action take_turn();
+
+    void gain_energy( int )
+    {
+    }
+
+    bool has_enough_energy()
+    {
+      return true;
+    }
+
+// Bad
+// {
 #if 0
     void walk();
     void attack();
@@ -201,7 +236,7 @@ namespace munificent::ecs
     void teleport();
     void fireball();
 #endif
-    // }
+// }
   };
 
   struct monster : public actor
@@ -209,10 +244,11 @@ namespace munificent::ecs
     breed b;
     int health;
 
-    void take_turn()
-      {
-        // pathfinding, ai, etc.
-      }
+    action take_turn() override
+    {
+      // pathfinding, ai, etc.
+      return {};
+    }
   };
 
   struct hero_class : public type_object
@@ -224,39 +260,39 @@ namespace munificent::ecs
     hero_class class_;
 
     action take_turn( char key )
+    {
+      switch( key )
       {
-        switch( key )
-        {
-        case 'd':
-          return drop_action();
-          break;
+      case 'd':
+	return drop_action();
+	break;
 
-        case 'u':
-          return use_action();
-          break;
+      case 'u':
+	return use_action();
+	break;
 
-        case 'r':
-          return rest_action();
-          break;
+      case 'r':
+	return rest_action();
+	break;
 
-        default:
-          break;
-        }
+      default:
+	  break;
       }
+    }
   };
 
   void game_loop()
   {
     std::vector< actor > actors;
 
-    for( a & : actors )
+    for( auto & a : actors )
     {
       a.gain_energy( a.speed );
 
       if( a.has_enough_energy() )
       {
-        action act = a.take_turn();
-        act.perform();
+	action act = a.take_turn();
+	act.perform();
       }
     }
   }
