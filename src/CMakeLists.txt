@@ -20,6 +20,7 @@
 set( SOURCES
   actor.cpp
   action.cpp
+  component.cpp
   game.cpp
   main.cpp
   ecs.cpp
