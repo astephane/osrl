@@ -47,14 +47,21 @@ namespace osrl
 
     assert( actors[ current ] );
 
-    auto action = actors[ current ]->get_action();
+    auto a = actors[ current ]->get_action();
 
-    if( !action )
+    if( !a )
       return;
 
-    if( action->perform() )
     {
-      // Do something.
+      action * it = a.get();
+
+      assert( it );
+
+      while( it )
+	if( it->perform() )
+	  it = nullptr;
+	else
+	  it = it->alternate.get();
     }
 
     // Generator design-pattern
