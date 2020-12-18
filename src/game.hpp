@@ -36,6 +36,8 @@ namespace osrl
   // Closure concept.
   struct game
   {
+    game();
+
 #if 0
     void loop()
     {

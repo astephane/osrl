@@ -29,6 +29,15 @@
 namespace osrl
 {
 
+  game
+  ::game()
+  {
+    actors.reserve( 2 );
+
+    actors.push_back( std::make_unique< hero >() );
+    actors.push_back( std::make_unique< monster >() );
+  }
+
   void
   game
   ::process()
