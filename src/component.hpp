@@ -39,6 +39,10 @@ namespace osrl
   {
   };
 
+  struct ai_component : public component
+  {
+  };
+
 } // osrl
 
 
