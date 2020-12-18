@@ -35,6 +35,8 @@ PRAGMA_WARNING_DISABLE_GCC_Wshadow;
 
 #include <libtcod.hpp>
 
+PRAGMA_WARNING_POP;
+
 namespace
 {
   constexpr int width() noexcept
@@ -100,8 +102,6 @@ libtcod_main( int unused( argc ), char * unused( argv )[] )
 
   return EXIT_SUCCESS;
 }
-
-PRAGMA_WARNING_POP;
 
 #endif // USE_LIBTCOD
 
