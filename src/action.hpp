@@ -24,6 +24,7 @@
 
 
 #include "system.hpp"
+#include "vec2.hpp"
 
 #include <memory>
 
@@ -48,6 +49,9 @@ namespace osrl
 
   struct move_action : public action
   {
+    move_action( vec2i v ) : velocity( v ) {}
+
+    vec2i velocity;
   };
 
   struct rest_action : public action
