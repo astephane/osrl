@@ -23,7 +23,7 @@ set( SOURCES
   component.cpp
   game.cpp
   main.cpp
-  ecs.cpp
+  entity.cpp
   munificent_ecs.cpp
   osrl.cpp
   system.cpp

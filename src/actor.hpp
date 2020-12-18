@@ -24,7 +24,7 @@
 
 #include "action.hpp"
 #include "component.hpp"
-#include "ecs.hpp"
+#include "entity.hpp"
 
 namespace osrl
 {

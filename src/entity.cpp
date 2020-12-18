@@ -18,4 +18,4 @@
 // <https://www.gnu.org/licenses/>.
 //
 
-#include "ecs.hpp"
+#include "entity.hpp"
