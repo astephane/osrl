@@ -30,12 +30,13 @@ namespace osrl
 {
 
   game
-  ::game()
+  ::game( hero::input_pointer && in_ ) :
+    monster_input( std::make_shared< monster::input_pointer::element_type >() )
   {
     actors.reserve( 2 );
 
-    actors.push_back( std::make_unique< hero >() );
-    actors.push_back( std::make_unique< monster >() );
+    actors.push_back( std::make_unique< hero >( std::move( in_ ) ) );
+    actors.push_back( std::make_unique< monster >( std::make_shared< ai_component >() ) );
   }
 
   void

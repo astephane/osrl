@@ -36,7 +36,7 @@ namespace osrl
   // Closure concept.
   struct game
   {
-    game();
+    game( hero::input_pointer && );
 
 #if 0
     void loop()
@@ -61,6 +61,8 @@ namespace osrl
 
     actor_vector actors;
     actor_vector::size_type current;
+
+    monster::input_pointer monster_input;
   };
 
 } // osrl
