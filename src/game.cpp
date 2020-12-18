@@ -49,7 +49,7 @@ namespace osrl
 
     assert( actors[ current ] );
 
-    auto a = actors[ current ]->get_action();
+    auto a = actors[ current ]->get_next_action();
 
     if( !a )
       return;
