@@ -23,14 +23,14 @@
 #define OSRL_GAME_HPP 0x54470000F233C0D3
 
 
+#include "actor.hpp"
+
 #include <memory>
 #include <vector>
 
 
 namespace osrl
 {
-
-  struct actor;
 
   // Command design-pattern.
   // Closure concept.
