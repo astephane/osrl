@@ -21,6 +21,7 @@
 
 
 #include "action.hpp"
+#include "memory.hpp"
 
 #include <cassert>
 
@@ -53,7 +54,7 @@ namespace osrl
       return;
 
     {
-      action * it = a.get();
+      cxx::raw_ptr< action > it = a.get();
 
       assert( it );
 
