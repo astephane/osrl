@@ -26,21 +26,26 @@
 namespace osrl
 {
 
+  struct actor;
+
   struct component
   {
     virtual ~component();
   };
 
-  struct input_component : public component
+  // see: http://gameprogrammingpatterns.com/component.html
+  struct in_component : public component
+  {
+    virtual void update( actor & ) = 0;
+  };
+
+  struct human_component : public in_component
   {
   };
 
-  struct keyboard_component : public component
+  struct ai_component : public in_component
   {
-  };
-
-  struct ai_component : public component
-  {
+    void update( actor & ) override;
   };
 
 } // osrl

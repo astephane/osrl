@@ -28,4 +28,10 @@ namespace osrl
   {
   }
 
+  void
+  ai_component
+  ::update( actor & )
+  {
+  }
+
 } // osrl
