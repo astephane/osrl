@@ -24,6 +24,7 @@
 #include <cstdlib>
 #include <iostream>
 
+
 #if USE_LIBTCOD
 
 PRAGMA_WARNING_PUSH;
