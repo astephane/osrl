@@ -26,6 +26,7 @@ set( SOURCES
   ecs.cpp
   munificent_ecs.cpp
   osrl.cpp
+  system.cpp
   vec2.cpp
   )
 
