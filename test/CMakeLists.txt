@@ -19,6 +19,7 @@
 
 set( SOURCES
   main.cpp
+  vec2.test.cpp
   )
 
 set( TARGET_NAME "test-${PROJECT_NAME}" )
@@ -29,10 +30,12 @@ add_executable( ${TARGET_NAME} ${SOURCES} )
 
 target_include_directories( ${TARGET_NAME} PRIVATE
   ${CMAKE_SOURCE_DIR}/test
-  ${CMAKE_SOURCE_DIR}/mod/catch2/single_include
+  ${CMAKE_SOURCE_DIR}/src
   ${CMAKE_BINARY_DIR}
-  # ${CMAKE_BINARY_DIR}/mod/libascxx
-  # $<$<BOOL:${USE_LIBTCOD}>:${LIBTCOD_INCLUDE_DIRS}>
+  #
+  ${CMAKE_SOURCE_DIR}/mod/libascxx/src
+  ${CMAKE_SOURCE_DIR}/mod/libascxx
+  ${CMAKE_SOURCE_DIR}/mod/catch2/single_include
   )
 
 target_link_libraries( ${TARGET_NAME} PRIVATE
