@@ -74,8 +74,8 @@ CMAKE_CXX_FLAGS:STRING+= -Wall -Wextra -Wshadow
 # CMAKE_CXX_COMPILER=/usr/bin/clang++
 
 # Instrumentation
-CMAKE_C_FLAGS_DEBUG:STRING+= -fsanitize=address,undefined -fno-omit-frame-pointer
-CMAKE_CXX_FLAGS_DEBUG:STRING+=  -fsanitize=address,undefined -fno-omit-frame-pointer
+# CMAKE_C_FLAGS_DEBUG:STRING+= -fsanitize=address,undefined -fno-omit-frame-pointer
+# CMAKE_CXX_FLAGS_DEBUG:STRING+=  -fsanitize=address,undefined -fno-omit-frame-pointer
 # CMAKE_C_FLAGS_RELWITHDEBINFO:STRING+= -fsanitize=address,undefined -fno-omit-frame-pointer
 # CMAKE_CXX_FLAGS_RELWITHDEBINFO:STRING+=  -fsanitize=address,undefined -fno-omit-frame-pointer
 
