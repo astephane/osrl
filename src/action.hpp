@@ -28,8 +28,14 @@
 
 namespace osrl
 {
+
+  // Command design-pattern.
+  // Closure concept.
   struct action : public system
   {
+    using result = bool;
+
+    result perform();
   };
 
 } // osrl
