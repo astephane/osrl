@@ -18,6 +18,7 @@
 #
 
 set( SOURCES
+  actor.cpp
   action.cpp
   main.cpp
   ecs.cpp
