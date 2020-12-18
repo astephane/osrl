@@ -20,6 +20,7 @@
 #include "osrl_config.hpp"
 
 
+#include "action.hpp"
 #include "game.hpp"
 #include "memory.hpp"
 #include "pp.hpp"
@@ -56,8 +57,33 @@ namespace osrl::tcode
 
   struct human_component : public osrl::human_component
   {
-    void update( actor & )
+    void update( actor & actor_ )
     {
+      actor::action_pointer a;
+
+      switch( key.vk )
+      {
+      case TCODK_UP:
+	a = std::make_unique< move_action >( vec2i( 0, -1 ) );
+	break;
+
+      case TCODK_DOWN:
+	a = std::make_unique< move_action >( vec2i( 0, +1 ) );
+	break;
+
+      case TCODK_LEFT:
+	a = std::make_unique< move_action >( vec2i( -1, 0 ) );
+	break;
+
+      case TCODK_RIGHT:
+	a = std::make_unique< move_action >( vec2i( +1, 0 ) );
+	break;
+
+      default:
+	break;
+      }
+
+      actor_.set_next_action( std::move( a ) );
     }
 
     TCOD_key_t key;
