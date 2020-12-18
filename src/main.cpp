@@ -21,6 +21,7 @@
 
 
 #include "game.hpp"
+#include "memory.hpp"
 #include "pp.hpp"
 #include "vec2.hpp"
 
@@ -50,13 +51,31 @@ namespace
   }
 } // namespsace
 
+namespace osrl::tcode
+{
+
+  struct human_component : public osrl::human_component
+  {
+    void update( actor & )
+    {
+    }
+
+    TCOD_key_t key;
+    TCOD_mouse_t mouse;
+  };
+
+} // tcode
+
 int
 libtcod_main( int unused( argc ), char * unused( argv )[] )
 {
   TCODConsole::initRoot( width(), height(), "\"Blackhawk\" OSRogueL " OSRL_VERSION_STRING, false );
 
   // TCODConsole::root->setBackgroundFlag( TCOD_BKGND_COLOR_BURN );
-  osrl::game game;
+
+  auto human_component = std::make_shared< osrl::tcode::human_component >();
+
+  osrl::game game( human_component );
 
   osrl::vec2< int > pos(
     width() / 2,
@@ -65,11 +84,9 @@ libtcod_main( int unused( argc ), char * unused( argv )[] )
 
   while( !TCODConsole::isWindowClosed() )
   {
-    TCOD_key_t key;
+    TCODSystem::checkForEvent( TCOD_EVENT_KEY_PRESS, &human_component->key, &human_component->mouse );
 
-    TCODSystem::checkForEvent( TCOD_EVENT_KEY_PRESS, &key, nullptr );
-
-    switch( key.vk )
+    switch( human_component->key.vk )
     {
     case TCODK_UP:
       pos.y = std::max( 0, pos.y - 1 );
