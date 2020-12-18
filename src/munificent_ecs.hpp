@@ -213,7 +213,7 @@ namespace munificent::ecs
     int y;
     int speed;
 
-    virtual action take_turn();
+    virtual action take_turn() { return {}; }
 
     void gain_energy( int )
     {
