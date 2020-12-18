@@ -20,6 +20,7 @@
 set( SOURCES
     main.cpp
     ecs.cpp
+    munificent_ecs.cpp
     osrl.hpp
     osrl.cpp
     )
