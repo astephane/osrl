@@ -2,3 +2,6 @@
 	path = mod/libascxx
 	url = ../libascxx.git
 	branch = develop
+[submodule "mod/catch2"]
+	path = mod/catch2
+	url = ../../catchorg/Catch2.git
