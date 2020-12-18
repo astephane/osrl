@@ -23,20 +23,10 @@
 #define OSRL_ECS_HPP 0x54470000F233C0D3
 
 
-#include <list>
-#include <map>
-#include <set>
-#include <string>
-#include <vector>
-
 
 namespace osrl
 {
   struct entity
-  {
-  };
-
-  struct component
   {
   };
 
