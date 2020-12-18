@@ -49,4 +49,4 @@ namespace osrl
 } // osrl
 
 
-#endif // ACTION_HPP
+#endif // OSRL_ACTION_HPP
