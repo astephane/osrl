@@ -19,8 +19,8 @@
 
 #pragma once
 
-#ifndef OSRL_ECS_HPP
-#define OSRL_ECS_HPP 0x54470000F233C0D3
+#ifndef OSRL_ENTITY_HPP
+#define OSRL_ENTITY_HPP 0x54470000F233C0D3
 
 
 
@@ -28,9 +28,10 @@ namespace osrl
 {
   struct entity
   {
+    virtual ~entity();
   };
 
 } // osrl
 
 
-#endif // OSRL_ECS_HPP
+#endif // OSRL_ENTITY_HPP

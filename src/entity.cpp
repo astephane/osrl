@@ -19,3 +19,13 @@
 //
 
 #include "entity.hpp"
+
+namespace osrl
+{
+
+  entity
+  ::~entity()
+  {
+  }
+
+} // osrl
