@@ -23,6 +23,7 @@
 #define OSRL_VEC2_HPP 0x54470000F233C0D3
 
 
+#include <cstddef>
 // #include <type_traits>
 
 
@@ -64,21 +65,18 @@ namespace osrl
     }
 
     vec2
-    operator + ( const T & rhs ) const
+    operator + ( vec2< T > const & rhs ) const
     {
       return vec2( x + rhs.x,
 		   y + rhs.y );
     }
 
-
     value_type x;
     value_type y;
   };
 
-  template< typename T >
-  struct size
-  {
-  };
+
+  using vec2i = vec2< int >;
 
 } // osrl
 
