@@ -34,31 +34,49 @@ namespace osrl
 
   struct action;
 
+
   struct actor : public entity
   {
     using action_pointer = std::unique_ptr< action >;
+    using input_pointer = std::weak_ptr< in_component >;
+
+    actor( input_pointer && in_ ) : in( std::move( in_ ) ) {}
 
     virtual action_pointer get_action() = 0;
+
+    input_pointer in;
   };
+
 
   struct character : public actor
   {
+    character( input_pointer && in_ ) : actor( std::move( in_ ) ) {}
   };
+
 
   struct hero : public character
   {
-    keyboard_component input;
+    using input_pointer = std::weak_ptr< human_component >;
+
+    hero( input_pointer && in_ ) : character( std::move( in_ ) ) {}
 
     action_pointer get_action() override;
   };
 
-  struct npc : public character
+
+  struct monster : public character
   {
+    using input_pointer = std::weak_ptr< ai_component >;
+
+    monster( input_pointer && in_ ) : character( std::move( in_ ) ) {}
+
+    action_pointer get_action() override;
   };
 
-  struct monster : public actor
+
+  struct npc : public monster
   {
-    action_pointer get_action() override;
+    npc( input_pointer && in_ ) : monster( std::move( in_ ) ) {}
   };
 
 } // osrl
