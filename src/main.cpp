@@ -20,57 +20,12 @@
 #include "osrl_config.hpp"
 
 
-#include "actor.hpp"
+#include "game.hpp"
 #include "pp.hpp"
 #include "vec2.hpp"
 
-#include <algorithm>
 #include <cstdlib>
 #include <iostream>
-#include <memory>
-
-namespace osrl
-{
-
-  struct game
-  {
-#if 0
-    void loop()
-    {
-      double elapsed = 1.0 / 25.0;
-
-      std::for_each(
-	std::begin( actors ),
-	std::end( actors ),
-	[ elapsed ]( auto * a ) {
-	  assert( a );
-	  a->update( elapsed );
-	}
-	);
-    }
-#endif
-
-    void process()
-    {
-      auto action = actors[ current ]->get_action();
-
-      if( action.perform() )
-      {
-	// Do something.
-      }
-
-      // Generator design-pattern
-      current = ( current + 1 ) % actors.size();
-    }
-
-    using actor_pointer = std::unique_ptr< actor >;
-    using actor_vector = std::vector< actor_pointer >;
-
-    actor_vector actors;
-    actor_vector::size_type current;
-  };
-
-} // osrl
 
 
 #if USE_LIBTCOD
