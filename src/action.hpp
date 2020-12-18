@@ -35,7 +35,7 @@ namespace osrl
   {
     using result = bool;
 
-    result perform();
+    result perform() { return false; }
   };
 
   struct move_action : public action
