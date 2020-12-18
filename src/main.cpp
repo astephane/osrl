@@ -83,7 +83,8 @@ namespace osrl::tcode
 	break;
       }
 
-      actor_.set_next_action( std::move( a ) );
+      if( a )
+	actor_.set_next_action( std::move( a ) );
     }
 
     TCOD_key_t key;
@@ -112,6 +113,7 @@ libtcod_main( int unused( argc ), char * unused( argv )[] )
   {
     TCODSystem::checkForEvent( TCOD_EVENT_KEY_PRESS, &human_component->key, &human_component->mouse );
 
+#if 0
     switch( human_component->key.vk )
     {
     case TCODK_UP:
@@ -133,6 +135,12 @@ libtcod_main( int unused( argc ), char * unused( argv )[] )
     default:
       break;
     }
+
+#else
+    game.update_input();
+    game.process();
+
+#endif
 
     TCODConsole::root->clear();
 
