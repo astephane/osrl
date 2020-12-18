@@ -18,3 +18,4 @@
 #
 
 add_subdirectory(libascxx)
+add_subdirectory(catch2)
