@@ -23,10 +23,9 @@
 #define OSRL_GAME_HPP 0x54470000F233C0D3
 
 
-#include "actor.hpp"
-
 #include <memory>
 #include <vector>
+
 
 namespace osrl
 {
@@ -53,18 +52,7 @@ namespace osrl
     }
 #endif
 
-    void process()
-    {
-      auto action = actors[ current ]->get_action();
-
-      if( action.perform() )
-      {
-	// Do something.
-      }
-
-      // Generator design-pattern
-      current = ( current + 1 ) % actors.size();
-    }
+    void process();
 
     using actor_pointer = std::unique_ptr< actor >;
     using actor_vector = std::vector< actor_pointer >;

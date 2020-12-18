@@ -17,5 +17,40 @@
 // License along with racatoma.  If not, see
 // <https://www.gnu.org/licenses/>.
 //
-
 #include "game.hpp"
+
+
+#include "actor.hpp"
+#include "action.hpp"
+
+#include <cassert>
+
+
+namespace osrl
+{
+
+  void
+  game
+  ::process()
+  {
+    static_assert( std::is_unsigned_v< decltype( current ) > );
+
+    assert( current < actors.size() );
+
+    assert( actors[ current ] );
+
+    auto action = actors[ current ]->get_action();
+
+    if( !action )
+      return;
+
+    if( action->perform() )
+    {
+      // Do something.
+    }
+
+    // Generator design-pattern
+    current = ( current + 1 ) % actors.size();
+  }
+
+} // osrl
