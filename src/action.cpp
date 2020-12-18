@@ -19,3 +19,7 @@
 //
 
 #include "action.hpp"
+
+namespace osrl
+{
+} // namespace orsl

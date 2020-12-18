@@ -25,6 +25,8 @@
 
 #include "system.hpp"
 
+#include <memory>
+
 
 namespace osrl
 {
@@ -33,9 +35,15 @@ namespace osrl
   // Closure concept.
   struct action : public system
   {
+    using pointer = std::unique_ptr< action >;
+
     using result = bool;
 
+    action( pointer && alternate_ = nullptr ) : alternate( std::move( alternate_ ) ) {}
+
     result perform() { return false; }
+
+    pointer alternate;
   };
 
   struct move_action : public action
