@@ -18,28 +18,24 @@
 #
 
 set( SOURCES
-    main.cpp
-    ecs.cpp
-    munificent_ecs.cpp
-    osrl.hpp
-    osrl.cpp
-    )
-
-
-message( "CMAKE_SOURCE_DIR=${CMAKE_SOURCE_DIR}" )
-message( "CMAKE_BINARY_DIR=${CMAKE_BINARY_DIR}" )
+  main.cpp
+  ecs.cpp
+  munificent_ecs.cpp
+  osrl.cpp
+  vec2.cpp
+  )
 
 
 add_executable( ${PROJECT_NAME} ${SOURCES} )
 
 target_include_directories( ${PROJECT_NAME} PRIVATE
-    ${CMAKE_SOURCE_DIR}/src
-    ${CMAKE_SOURCE_DIR}/mod/libascxx/src
-    ${CMAKE_BINARY_DIR}
-    # ${CMAKE_BINARY_DIR}/mod/libascxx
-    $<$<BOOL:${USE_LIBTCOD}>:${LIBTCOD_INCLUDE_DIRS}>
-    )
+  ${CMAKE_SOURCE_DIR}/src
+  ${CMAKE_SOURCE_DIR}/mod/libascxx/src
+  ${CMAKE_BINARY_DIR}
+  # ${CMAKE_BINARY_DIR}/mod/libascxx
+  $<$<BOOL:${USE_LIBTCOD}>:${LIBTCOD_INCLUDE_DIRS}>
+  )
 
 target_link_libraries( ${PROJECT_NAME} PRIVATE
-    $<$<BOOL:${USE_LIBTCOD}>:${LIBTCOD_LIBRARIES}>
-    )
+  $<$<BOOL:${USE_LIBTCOD}>:${LIBTCOD_LIBRARIES}>
+  )
