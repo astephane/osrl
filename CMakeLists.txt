@@ -35,3 +35,4 @@ include( cmake/options.cmake )
 
 add_subdirectory( mod )
 add_subdirectory( src )
+add_subdirectory( test )
