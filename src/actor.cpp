@@ -32,4 +32,12 @@ namespace osrl
     return nullptr;
   }
 
+  actor::action_pointer
+  monster
+  ::get_action()
+  {
+    // Wait.
+    return std::make_unique< move_action >();
+  }
+
 } // osrl
