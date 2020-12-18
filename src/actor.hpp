@@ -47,7 +47,7 @@ namespace osrl
 
   struct hero : public character
   {
-    component input;
+    keyboard_component input;
 
     action_pointer get_action() override;
   };
@@ -58,6 +58,7 @@ namespace osrl
 
   struct monster : public actor
   {
+    action_pointer get_action() override;
   };
 
 } // osrl
