@@ -19,43 +19,19 @@
 
 #pragma once
 
-#ifndef OSRL_ACTOR_HPP
-#define OSRL_ACTOR_HPP 0x54470000F233C0D3
+#ifndef OSRL_SYSTEM_HPP
+#define OSRL_SYSTEM_HPP 0x54470000F233C0D3
 
-#include "action.hpp"
-#include "component.hpp"
-#include "ecs.hpp"
+
 
 namespace osrl
 {
-  struct actor : public entity
-  {
-    virtual action get_action() = 0;
-  };
 
-  struct character : public actor
-  {
-  };
-
-  struct hero : public character
-  {
-    component input;
-
-    action get_action() override
-    {
-      return rest_action();
-    }
-  };
-
-  struct npc : public character
-  {
-  };
-
-  struct monster : public actor
+  struct system
   {
   };
 
 } // osrl
 
 
-#endif // OSRL_ACTOR_HPP
+#endif // OSRL_SYSTEM_HPP

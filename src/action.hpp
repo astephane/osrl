@@ -23,7 +23,7 @@
 #define OSRL_ACTION_HPP 0x54470000F233C0D3
 
 
-#include "ecs.hpp"
+#include "system.hpp"
 
 
 namespace osrl

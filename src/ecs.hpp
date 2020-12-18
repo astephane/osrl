@@ -30,9 +30,6 @@ namespace osrl
   {
   };
 
-  struct system
-  {
-  };
 } // osrl
 
 
