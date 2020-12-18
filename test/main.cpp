@@ -19,10 +19,6 @@
 
 #include "osrl_config.hpp"
 
-#include <cstdlib>
+#define CATCH_CONFIG_MAIN
 
-int
-main( int unused( argc ), char * unused( argv )[] )
-{
-  return EXIT_SUCCESS;
-}
+#include <catch2/catch.hpp>
