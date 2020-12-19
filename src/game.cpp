@@ -26,6 +26,9 @@
 #include <algorithm>
 #include <cassert>
 
+// #include <iostream>
+// #include <typeinfo>
+
 
 namespace osrl
 {
@@ -37,7 +40,7 @@ namespace osrl
     actors.reserve( 2 );
 
     actors.push_back( std::make_unique< hero >( std::move( in_ ) ) );
-    actors.push_back( std::make_unique< monster >( monster_input ) );
+    // actors.push_back( std::make_unique< monster >( monster_input ) );
   }
 
   void
@@ -67,7 +70,6 @@ namespace osrl
     static_assert( std::is_unsigned_v< decltype( current ) > );
 
     assert( current < actors.size() );
-
     assert( actors[ current ] );
 
     auto a = actors[ current ]->get_next_action();
@@ -75,6 +77,7 @@ namespace osrl
     if( !a )
       return;
 
+#if 0
     {
       cxx::raw_ptr< action > it = a.get();
 
@@ -86,6 +89,19 @@ namespace osrl
 	else
 	  it = it->alternate.get();
     }
+
+#else
+    while( a )
+    {
+      // std::cout << typeid( *a ).name() << std::endl;
+
+      if( a->perform() )
+	a = nullptr;
+      else
+	a = std::move( a->alternate );
+    }
+
+#endif
 
     // Generator design-pattern
     current = ( current + 1 ) % actors.size();
