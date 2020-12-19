@@ -26,6 +26,7 @@
 #include "pp.hpp"
 #include "vec2.hpp"
 
+#include <algorithm>
 #include <cstdlib>
 #include <iostream>
 
@@ -104,10 +105,10 @@ libtcod_main( int unused( argc ), char * unused( argv )[] )
 
   osrl::game game( human_component );
 
-  osrl::vec2< int > pos(
-    width() / 2,
-    height() / 2
-    );
+  // osrl::vec2< int > pos(
+  //   width() / 2,
+  //   height() / 2
+  //   );
 
   while( !TCODConsole::isWindowClosed() )
   {
@@ -144,7 +145,16 @@ libtcod_main( int unused( argc ), char * unused( argv )[] )
 
     TCODConsole::root->clear();
 
-    TCODConsole::root->putChar( pos.x, pos.y, '@' );
+    std::for_each(
+      std::begin( game.actors ),
+      std::end( game.actors ),
+      []( auto const & a ) {
+
+	assert( a );
+
+	TCODConsole::root->putChar( a->pos.x, a->pos.y, '@' );
+      }
+      );
 
     TCODConsole::flush();
    }
