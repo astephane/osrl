@@ -41,6 +41,8 @@ namespace osrl
 
     actors.push_back( std::make_unique< hero >( std::move( in_ ) ) );
     // actors.push_back( std::make_unique< monster >( monster_input ) );
+
+    actors.front()->pos = vec2i( 40, 40 );
   }
 
   void
@@ -95,7 +97,7 @@ namespace osrl
     {
       // std::cout << typeid( *a ).name() << std::endl;
 
-      if( a->perform() )
+      if( a->perform( *actors[ current ] ) )
 	a = nullptr;
       else
 	a = std::move( a->alternate );
