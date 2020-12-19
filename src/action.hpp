@@ -23,6 +23,7 @@
 #define OSRL_ACTION_HPP 0x54470000F233C0D3
 
 
+#include "actor.hpp"
 #include "system.hpp"
 #include "vec2.hpp"
 
@@ -42,7 +43,7 @@ namespace osrl
 
     action( pointer && alternate_ = nullptr ) : alternate( std::move( alternate_ ) ) {}
 
-    result perform() { return true; }
+    virtual result perform( actor & ) { return true; }
 
     pointer alternate;
   };
@@ -50,6 +51,16 @@ namespace osrl
   struct move_action : public action
   {
     move_action( vec2i v ) : velocity( v ) {}
+
+    result perform( actor & a ) override
+    {
+      if( a.pos.is_zero() )
+	return false;
+
+      a.pos += velocity;
+
+      return true;
+    }
 
   private:
     vec2i velocity;
