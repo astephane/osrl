@@ -25,6 +25,7 @@
 
 #include "component.hpp"
 #include "entity.hpp"
+#include "vec2.hpp"
 
 #include <cassert>
 #include <memory>
@@ -58,6 +59,7 @@ namespace osrl
 
     input_pointer in;
     action_pointer next_action;
+    vec2i pos;
   };
 
 
