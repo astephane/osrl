@@ -67,8 +67,19 @@ namespace osrl
     vec2
     operator + ( vec2< T > const & rhs ) const
     {
-      return vec2( x + rhs.x,
-		   y + rhs.y );
+      vec2 result( *this );
+
+      result += rhs;
+
+      return result;
+    }
+
+    vec2< T > & operator += ( vec2< T > const & rhs )
+    {
+      x += rhs.x;
+      y += rhs.y;
+
+      return *this;
     }
 
     value_type x;
