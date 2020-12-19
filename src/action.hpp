@@ -42,7 +42,7 @@ namespace osrl
 
     action( pointer && alternate_ = nullptr ) : alternate( std::move( alternate_ ) ) {}
 
-    result perform() { return false; }
+    result perform() { return true; }
 
     pointer alternate;
   };
@@ -51,6 +51,7 @@ namespace osrl
   {
     move_action( vec2i v ) : velocity( v ) {}
 
+  private:
     vec2i velocity;
   };
 
