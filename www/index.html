@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+
+  <head>
+    <meta charset="UTF-8" />
+    <title>Minimal JS front-end App Example</title>
+    <!-- <script src="./run.js"></script> -->
+  </head>
+
+  <body>
+
+    <p>See: <a href="https://www.codeproject.com/articles/753724/javascript-front-end-web-app-tutorial-part">https://www.codeproject.com/articles/753724/javascript-front-end-web-app-tutorial-part</a></p>
+
+    <h1>Star System Generator</h1>
+
+    <h2>Classic Traveller</h2>
+
+    <button type="button" onclick="foo()">Generate Random</button>
+
+    <!-- <p id="demo"></p> -->
+
+    <p id="console"></p>
+
+  </body>
+
+  <script>
+
+    function get_console()
+    {
+        return document.getElementById( "console" );
+    }
+
+    function clear_console()
+    {
+        console = get_console();
+
+        // while( console.hasChildNodes() )
+        // {
+        // }
+    }
+
+    function print( text )
+    {
+        get_console().appendChild( document.createTextNode( text ) );
+    }
+
+    function explore_dom( element )
+    {
+        if( element == null )
+            explore_dom( document.documentElement );
+
+        print( element.name );
+    }
+
+    function foo()
+    {
+        console = get_console();
+
+
+    }
+
+    function generate_star_system()
+    {
+        return "New CT star system.";
+    }
+  </script>
+
+</html>
