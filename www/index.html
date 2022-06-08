@@ -20,7 +20,17 @@
 
     <!-- <p id="demo"></p> -->
 
-    <p id="console"></p>
+    <p>Alpha</p><p>Beta</p>
+
+    <div id="console"></div>
+
+    <h1>DOM</h1>
+
+    <button type="button" onclick="explore_children( null )">Children</button>
+    <button type="button" onclick="explore_nodes( null )">Nodes</button>
+
+    <div id="children" />
+    <div id="nodes" />
 
   </body>
 
@@ -40,24 +50,63 @@
         // }
     }
 
-    function print( text )
+    function print( text, console )
     {
-        get_console().appendChild( document.createTextNode( text ) );
+        const paragraph = document.createElement( "p" );
+        {
+            const text_node = document.createTextNode( text );
+
+            paragraph.appendChild( text_node );
+        }
+
+        document.getElementById( console ).appendChild( paragraph );
     }
 
-    function explore_dom( element )
+    function get_type( node )
+    {
+        switch( node.nodeType )
+        {
+            case 1: return "ELEMENT_NODE"; break;
+            case 2: return "ATTRIBUTE_NODE"; break;
+            case 3: return "TEXT_NODE"; break;
+            case 4: return "COMMENT_NODE"; break;
+            case 5: return "DOCUMENT_NODE"; break;
+            case 6: return "DOCUMENT_TYPE_NODE"; break;
+            default: return "NIL"; break;
+        }
+    }
+
+    function explore_children( element )
     {
         if( element == null )
-            explore_dom( document.documentElement );
+        {
+            explore_children( document.documentElement );
+            return;
+        }
 
-        print( element.name );
+        print( get_type( element ) + ": " + element.nodeName, "children" );
+
+        for( let i = 0; i < element.children.length; ++i )
+            explore_children( element.children[ i ]  );
+    }
+
+    function explore_nodes( node )
+    {
+        if( node == null )
+        {
+            explore_nodes( document.documentElement );
+            return;
+        }
+
+        print( get_type( node ) + ": " + node.nodeName, "nodes" );
+
+        for( let child in node.childNodes )
+            explore_nodes( child );
     }
 
     function foo()
     {
         console = get_console();
-
-
     }
 
     function generate_star_system()
