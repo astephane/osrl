@@ -10,7 +10,11 @@
 
   <body>
 
-    <p>See: <a href="https://www.codeproject.com/articles/753724/javascript-front-end-web-app-tutorial-part">https://www.codeproject.com/articles/753724/javascript-front-end-web-app-tutorial-part</a></p>
+    <p>See:
+      <ul>
+        <li><a href="https://www.codeproject.com/articles/753724/javascript-front-end-web-app-tutorial-part">https://www.codeproject.com/articles/753724/javascript-front-end-web-app-tutorial-part</li>
+        <li>https://www.w3schools.com/js/DEFAULT.asp</li>
+    </a></p>
 
     <h1>Star System Generator</h1>
 
@@ -26,11 +30,14 @@
 
     <h1>DOM</h1>
 
-    <button type="button" onclick="explore_children( null )">Children</button>
-    <button type="button" onclick="explore_nodes( null )">Nodes</button>
+    <button type="button" onclick="print_elements()">Elements</button>
+    <button type="button" onclick="print_nodes()">Nodes</button>
 
-    <div id="children" />
-    <div id="nodes" />
+    <h2>DOM Elements</h2>
+    <div id="elements"></div>
+
+    <h2>DOM Nodes</h2>
+    <div id="nodes"></div>
 
   </body>
 
@@ -69,39 +76,77 @@
             case 1: return "ELEMENT_NODE"; break;
             case 2: return "ATTRIBUTE_NODE"; break;
             case 3: return "TEXT_NODE"; break;
-            case 4: return "COMMENT_NODE"; break;
-            case 5: return "DOCUMENT_NODE"; break;
-            case 6: return "DOCUMENT_TYPE_NODE"; break;
-            default: return "NIL"; break;
+            case 8: return "COMMENT_NODE"; break;
+            case 9: return "DOCUMENT_NODE"; break;
+            case 10: return "DOCUMENT_TYPE_NODE"; break;
+            default: return node.nodeType.toString(); break;
         }
     }
 
-    function explore_children( element )
+    /*
+    class record
     {
-        if( element == null )
+        constructor( level, node )
         {
-            explore_children( document.documentElement );
-            return;
+            this.level = level;
+            this.type = get_type( node.nodeType );
+            this.name = node.nodeName;
+            this.children = node.children.length;
         }
 
-        print( get_type( element ) + ": " + element.nodeName, "children" );
+        toString()
+        {
+            return "#" + level + "-" + type + ": " + name + " (" + children + ")";
+        }
+    }
+    */
 
-        for( let i = 0; i < element.children.length; ++i )
-            explore_children( element.children[ i ]  );
+    function explore_elements( elt )
+    {
+        if( elt == null )
+        {
+            return explore_elements( document.documentElement );
+        }
+
+        let lines = [ get_type( elt ) + ": " + elt.nodeName + " '" + elt.id + "'" ];
+
+        for( let child of elt.children )
+            lines = lines.concat( explore_elements( child ) );
+
+        return lines;
+    }
+
+    function print_elements()
+    {
+        explore_elements( null ).forEach(
+            ( line ) => {
+                print( line, "elements" );
+            }
+        );
     }
 
     function explore_nodes( node )
     {
         if( node == null )
         {
-            explore_nodes( document.documentElement );
-            return;
+            return explore_nodes( document.documentElement );
         }
 
-        print( get_type( node ) + ": " + node.nodeName, "nodes" );
+        let lines = [ get_type( node ) + ": " + node.nodeName + " '" + node.id + "'" ];
 
-        for( let child in node.childNodes )
-            explore_nodes( child );
+        for( let child of node.childNodes )
+            lines = lines.concat( explore_nodes( child ) );
+
+        return lines;
+    }
+
+    function print_nodes()
+    {
+        explore_nodes( null ).forEach(
+            ( line ) => {
+                print( line, "nodes" );
+            }
+        );
     }
 
     function foo()
