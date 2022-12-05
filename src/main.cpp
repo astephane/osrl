@@ -65,27 +65,27 @@ namespace osrl::tcode
       switch( key.vk )
       {
       case TCODK_UP:
-	a = std::make_unique< move_action >( vec2i( 0, -1 ) );
-	break;
+        a = std::make_unique< move_action >( vec2i( 0, -1 ) );
+        break;
 
       case TCODK_DOWN:
-	a = std::make_unique< move_action >( vec2i( 0, +1 ) );
-	break;
+        a = std::make_unique< move_action >( vec2i( 0, +1 ) );
+        break;
 
       case TCODK_LEFT:
-	a = std::make_unique< move_action >( vec2i( -1, 0 ) );
-	break;
+        a = std::make_unique< move_action >( vec2i( -1, 0 ) );
+        break;
 
       case TCODK_RIGHT:
-	a = std::make_unique< move_action >( vec2i( +1, 0 ) );
-	break;
+        a = std::make_unique< move_action >( vec2i( +1, 0 ) );
+        break;
 
       default:
-	break;
+        break;
       }
 
       if( a )
-	actor_.set_next_action( std::move( a ) );
+        actor_.set_next_action( std::move( a ) );
     }
 
     TCOD_key_t key;
@@ -150,14 +150,14 @@ libtcod_main( int unused( argc ), char * unused( argv )[] )
       std::end( game.actors ),
       []( auto const & a ) {
 
-	assert( a );
+        assert( a );
 
-	TCODConsole::root->putChar( a->pos.x, a->pos.y, '@' );
+        TCODConsole::root->putChar( a->pos.x, a->pos.y, a->get_body() );
       }
       );
 
     TCODConsole::flush();
-   }
+  }
 
   // TCOD::quit();
 
