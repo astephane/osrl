@@ -33,18 +33,22 @@
 namespace osrl
 {
 
+  /***************************************************************************/
   game
   ::game( hero::input_pointer && in_ ) :
-    monster_input( std::make_shared< monster::input_pointer::element_type >() )
+    monster_input( std::make_shared< monster::input_pointer::element_type >() ),
+    current( 0 )
   {
     actors.reserve( 2 );
 
     actors.push_back( std::make_unique< hero >( std::move( in_ ) ) );
-    // actors.push_back( std::make_unique< monster >( monster_input ) );
+    actors.push_back( std::make_unique< monster >( monster_input ) );
 
     actors.front()->pos = vec2i( 40, 40 );
+    actors.back()->pos = vec2i( 1, 1 );
   }
 
+  /***************************************************************************/
   void
   game
   ::update_input()
@@ -52,19 +56,20 @@ namespace osrl
     std::for_each(
       std::begin( actors ),
       std::end( actors ),
-      []( auto & a ) {
+      []( actor_pointer & a ) {
 
-	assert( a );
+        assert( a );
 
-	auto in = a->in.lock();
+        auto in = a->in.lock();
 
-	assert( in );
+        assert( in );
 
-	in->update( *a );
+        in->update( *a );
       }
       );
   }
 
+  /***************************************************************************/
   void
   game
   ::process()
@@ -86,10 +91,10 @@ namespace osrl
       assert( it );
 
       while( it )
-	if( it->perform() )
-	  it = nullptr;
-	else
-	  it = it->alternate.get();
+        if( it->perform() )
+          it = nullptr;
+        else
+          it = it->alternate.get();
     }
 
 #else
@@ -98,9 +103,9 @@ namespace osrl
       // std::cout << typeid( *a ).name() << std::endl;
 
       if( a->perform( *actors[ current ] ) )
-	a = nullptr;
+        a = nullptr;
       else
-	a = std::move( a->alternate );
+        a = std::move( a->alternate );
     }
 
 #endif
