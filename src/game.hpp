@@ -10,11 +10,11 @@
 //
 // OSRogueL (osrl) is distributed in the hope that it will be useful,
 // but WITHOUT ANY WARRANTY; without even the implied warranty of
-// MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.	 See the
+// MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 // GNU Affero General Public License for more details.
 //
 // You should have received a copy of the GNU Affero General Public License
-// along with OSRogueL (osrl).	If not, see <https://www.gnu.org/licenses/>.
+// along with OSRogueL (osrl).  If not, see <https://www.gnu.org/licenses/>.
 //
 
 #pragma once
@@ -44,13 +44,13 @@ namespace osrl
       double elapsed = 1.0 / 25.0;
 
       std::for_each(
-	std::begin( actors ),
-	std::end( actors ),
-	[ elapsed ]( auto * a ) {
-	  assert( a );
-	  a->update( elapsed );
-	}
-	);
+        std::begin( actors ),
+        std::end( actors ),
+        [ elapsed ]( auto * a ) {
+          assert( a );
+          a->update( elapsed );
+        }
+        );
     }
 #endif
 
@@ -60,10 +60,9 @@ namespace osrl
     using actor_pointer = std::unique_ptr< actor >;
     using actor_vector = std::vector< actor_pointer >;
 
+    std::shared_ptr< ai_component > monster_input;
     actor_vector actors;
     actor_vector::size_type current;
-
-    std::shared_ptr< ai_component > monster_input;
   };
 
 } // osrl
