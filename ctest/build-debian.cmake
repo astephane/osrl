@@ -74,8 +74,8 @@ CMAKE_CXX_COMPILER=/usr/bin/g++-8
 # CMAKE_CXX_COMPILER=/usr/bin/clang++
 
 # Instrumentation
-CMAKE_C_FLAGS:STRING+= -fsanitize=address,undefined -fno-omit-frame-pointer
-CMAKE_CXX_FLAGS:STRING+=  -fsanitize=address,undefined -fno-omit-frame-pointer
+# CMAKE_C_FLAGS:STRING+= -fsanitize=address,undefined -fno-omit-frame-pointer
+# CMAKE_CXX_FLAGS:STRING+=  -fsanitize=address,undefined -fno-omit-frame-pointer
 
 CMAKE_INSTALL_PREFIX:STRING=${PRJ_INSTALL_PREFIX}
 
