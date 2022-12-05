@@ -67,17 +67,15 @@ CMAKE_BUILD_TYPE:STRING=${CTEST_BUILD_CONFIGURATION}
 CMAKE_C_FLAGS:STRING+= -Wall -Wextra -Wshadow
 CMAKE_CXX_FLAGS:STRING+= -Wall -Wextra -Wshadow
 
-# CMAKE_C_COMPILER=/usr/bin/gcc-7
-# CMAKE_CXX_COMPILER=/usr/bin/g++-7
+CMAKE_C_COMPILER=/usr/bin/gcc-8
+CMAKE_CXX_COMPILER=/usr/bin/g++-8
 
 # CMAKE_C_COMPILER=/usr/bin/clang
 # CMAKE_CXX_COMPILER=/usr/bin/clang++
 
 # Instrumentation
-# CMAKE_C_FLAGS_DEBUG:STRING+= -fsanitize=address,undefined -fno-omit-frame-pointer
-# CMAKE_CXX_FLAGS_DEBUG:STRING+=  -fsanitize=address,undefined -fno-omit-frame-pointer
-# CMAKE_C_FLAGS_RELWITHDEBINFO:STRING+= -fsanitize=address,undefined -fno-omit-frame-pointer
-# CMAKE_CXX_FLAGS_RELWITHDEBINFO:STRING+=  -fsanitize=address,undefined -fno-omit-frame-pointer
+CMAKE_C_FLAGS:STRING+= -fsanitize=address,undefined -fno-omit-frame-pointer
+CMAKE_CXX_FLAGS:STRING+=  -fsanitize=address,undefined -fno-omit-frame-pointer
 
 CMAKE_INSTALL_PREFIX:STRING=${PRJ_INSTALL_PREFIX}
 
