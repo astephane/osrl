@@ -35,6 +35,7 @@ namespace osrl
   {
     // static_assert( std::is_pod_v< vec2 > );
 
+    using this_type = vec2< T >;
     using value_type = T;
 
     using size_type = std::size_t;
@@ -47,6 +48,11 @@ namespace osrl
     using pointer = std::add_pointer_t< T >;
     using const_pointer = std::add_pointer< std::add_const_t< T > >;
     */
+
+    static constexpr this_type north() { return { 0, +1 }; }
+    static constexpr this_type south() { return { 0, -1 }; }
+    static constexpr this_type east() { return { +1, 0 }; }
+    static constexpr this_type west() { return { -1, 0 }; }
 
     constexpr vec2( T x_ = T( 0 ), T y_ = T( 0 ) ) noexcept :
       x( x_ ),
