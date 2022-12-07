@@ -28,8 +28,29 @@
 
 #include <algorithm>
 #include <cstdlib>
+#include <iomanip>
 #include <iostream>
 
+/*
+   _
+ _/.\_
+/.\_/.\
+\_/.\_/
+/.\_/.\
+\_/.\_/
+  \_/
+
+   .   .
+ .   .
+   .   .
+ .   .
+   .   .
+
+ . .
+. . .
+ . .
+
+*/
 
 #if USE_LIBTCOD
 
@@ -166,6 +187,19 @@ libtcod_main( int unused( argc ), char * unused( argv )[] )
 
 #endif // USE_LIBTCOD
 
+void
+display_extended_ascii_chart()
+{
+  for( std::int16_t i = 0; i < 256 ; ++i )
+  {
+    if( i % 16 == 0 )
+      std::wcout << std::endl;
+
+    std::wcout
+      << std::showbase << std::hex << std::setw( 2 ) << i
+      << ": " << static_cast< wchar_t >( i ) << " ";
+  }
+}
 
 int
 main( int argc, char * argv[] )
@@ -173,6 +207,10 @@ main( int argc, char * argv[] )
   std::cout
     << "Welcome to OSRogueL version " OSRL_VERSION_STRING " distributed under the terms of the " OSRL_LICENCE
     << std::endl;
+
+  std::cout << std::endl;
+  display_extended_ascii_chart();
+  std::cout << std::endl;
 
 #if USE_LIBTCOD
   return libtcod_main( argc, argv );
