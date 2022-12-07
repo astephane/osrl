@@ -86,19 +86,19 @@ namespace osrl::tcode
       switch( key.vk )
       {
       case TCODK_UP:
-        a = std::make_unique< move_action >( vec2i( 0, -1 ) );
+        a = std::make_unique< move_action >( vec2i::north() );
         break;
 
       case TCODK_DOWN:
-        a = std::make_unique< move_action >( vec2i( 0, +1 ) );
+        a = std::make_unique< move_action >( vec2i::south() );
         break;
 
       case TCODK_LEFT:
-        a = std::make_unique< move_action >( vec2i( -1, 0 ) );
+        a = std::make_unique< move_action >( vec2i::west() );
         break;
 
       case TCODK_RIGHT:
-        a = std::make_unique< move_action >( vec2i( +1, 0 ) );
+        a = std::make_unique< move_action >( vec2i::east() );
         break;
 
       default:
