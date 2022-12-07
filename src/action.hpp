@@ -55,7 +55,7 @@ namespace osrl
     result perform( actor & a ) override
     {
       if( a.pos.is_zero() )
-	return false;
+        return false;
 
       a.pos += velocity;
 
