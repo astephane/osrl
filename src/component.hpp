@@ -22,7 +22,6 @@
 #ifndef OSRL_COMPONENT_HPP
 #define OSRL_COMPONENT_HPP 0x54470000F233C0D3
 
-
 namespace osrl
 {
 
