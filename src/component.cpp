@@ -20,8 +20,19 @@
 
 #include "component.hpp"
 
+#include "action.hpp"
+
+#include <random>
+
 namespace osrl
 {
+
+  namespace
+  {
+    static std::random_device device;
+    static std::mt19937 rng;
+    static std::uniform_int_distribution< vec2i::value_type > distribution( -1, 1 );
+  } // anonymous
 
   component
   ::~component()
@@ -30,8 +41,18 @@ namespace osrl
 
   void
   ai_component
-  ::update( actor & )
+  ::update( actor & actor_ )
   {
+    // std::cout << "std::osrl::ai_component::update()" << std::endl;
+
+    actor_.set_next_action(
+      std::make_unique< move_action >(
+        vec2i(
+          distribution( rng ),
+          distribution( rng )
+          )
+        )
+      );
   }
 
 } // osrl
