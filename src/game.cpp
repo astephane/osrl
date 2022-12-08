@@ -45,7 +45,7 @@ namespace osrl
     actors.push_back( std::make_unique< monster >( monster_input ) );
 
     actors.front()->pos = vec2i( 40, 40 );
-    actors.back()->pos = vec2i( 1, 1 );
+    actors.back()->pos = vec2i( 20, 20 );
   }
 
   /***************************************************************************/
@@ -76,42 +76,20 @@ namespace osrl
   {
     static_assert( std::is_unsigned_v< decltype( current ) > );
 
-    assert( current < actors.size() );
-    assert( actors[ current ] );
-
-    auto a = actors[ current ]->get_next_action();
-
-    if( !a )
-      return;
-
-#if 0
+    for( actor_pointer & actor : actors )
     {
-      cxx::raw_ptr< action > it = a.get();
+      assert( actor );
 
-      assert( it );
+      auto action = actor->get_next_action();
 
-      while( it )
-        if( it->perform() )
-          it = nullptr;
+      while( action )
+      {
+        if( action->perform( *actor ) )
+          action.reset();
         else
-          it = it->alternate.get();
+          action = std::move( action->alternate );
+      }
     }
-
-#else
-    while( a )
-    {
-      // std::cout << typeid( *a ).name() << std::endl;
-
-      if( a->perform( *actors[ current ] ) )
-        a = nullptr;
-      else
-        a = std::move( a->alternate );
-    }
-
-#endif
-
-    // Generator design-pattern
-    current = ( current + 1 ) % actors.size();
   }
 
 } // osrl
