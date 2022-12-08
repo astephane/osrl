@@ -22,13 +22,9 @@
 #ifndef OSRL_ACTION_HPP
 #define OSRL_ACTION_HPP 0x54470000F233C0D3
 
-
 #include "actor.hpp"
 #include "system.hpp"
 #include "vec2.hpp"
-
-#include <memory>
-
 
 namespace osrl
 {
