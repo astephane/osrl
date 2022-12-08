@@ -74,23 +74,25 @@ namespace
   }
 } // namespsace
 
-namespace osrl::tcode
+namespace osrl::tcod
 {
 
   struct human_component : public osrl::human_component
   {
     void update( actor & actor_ )
     {
+      // std::cout << "std::osrl::tcode::human_component::update()" << std::endl;
+
       actor::action_pointer a;
 
       switch( key.vk )
       {
       case TCODK_UP:
-        a = std::make_unique< move_action >( vec2i::north() );
+        a = std::make_unique< move_action >( vec2i::south() );
         break;
 
       case TCODK_DOWN:
-        a = std::make_unique< move_action >( vec2i::south() );
+        a = std::make_unique< move_action >( vec2i::north() );
         break;
 
       case TCODK_LEFT:
@@ -113,77 +115,55 @@ namespace osrl::tcode
     TCOD_mouse_t mouse;
   };
 
-} // tcode
-
-int
-libtcod_main( int unused( argc ), char * unused( argv )[] )
-{
-  TCODConsole::initRoot( width(), height(), "\"Blackhawk\" OSRogueL " OSRL_VERSION_STRING, false );
-
-  // TCODConsole::root->setBackgroundFlag( TCOD_BKGND_COLOR_BURN );
-
-  auto human_component = std::make_shared< osrl::tcode::human_component >();
-
-  osrl::game game( human_component );
-
-  // osrl::vec2< int > pos(
-  //   width() / 2,
-  //   height() / 2
-  //   );
-
-  while( !TCODConsole::isWindowClosed() )
+  void
+  render( game const & game_ )
   {
-    TCODSystem::checkForEvent( TCOD_EVENT_KEY_PRESS, &human_component->key, &human_component->mouse );
-
-#if 0
-    switch( human_component->key.vk )
-    {
-    case TCODK_UP:
-      pos.y = std::max( 0, pos.y - 1 );
-      break;
-
-    case TCODK_DOWN:
-      pos.y = std::min( height() - 1, pos.y + 1 );
-      break;
-
-    case TCODK_LEFT:
-      pos.x = std::max( 0, pos.x - 1 );
-      break;
-
-    case TCODK_RIGHT:
-      pos.x = std::min( width() - 1, pos.x + 1 );
-      break;
-
-    default:
-      break;
-    }
-
-#else
-    game.update_input();
-    game.process();
-
-#endif
+    assert( TCODConsole::root );
 
     TCODConsole::root->clear();
 
-    std::for_each(
-      std::begin( game.actors ),
-      std::end( game.actors ),
-      []( auto const & a ) {
+    for( game::actor_pointer const & actor : game_.actors )
+    {
+        assert( actor );
 
-        assert( a );
-
-        TCODConsole::root->putChar( a->pos.x, a->pos.y, a->get_body() );
-      }
-      );
+        TCODConsole::root->putChar( actor->pos.x, actor->pos.y, actor->get_body() );
+    }
 
     TCODConsole::flush();
   }
 
-  // TCOD::quit();
+  int
+  main( int unused( argc ), char * unused( argv )[] )
+  {
+    TCODConsole::initRoot( width(), height(), "\"Blackhawk\" OSRogueL " OSRL_VERSION_STRING, false );
 
-  return EXIT_SUCCESS;
-}
+    // TCODConsole::root->setBackgroundFlag( TCOD_BKGND_COLOR_BURN );
+
+    auto human_input = std::make_shared< human_component >();
+
+    osrl::game game( human_input );
+
+    // osrl::vec2< int > pos(
+    //   width() / 2,
+    //   height() / 2
+    //   );
+
+    while( !TCODConsole::isWindowClosed() )
+    {
+      render( game );
+
+      TCODSystem::waitForEvent( TCOD_EVENT_KEY_PRESS, &human_input->key, &human_input->mouse, false );
+
+      game.update_input();
+      game.process();
+    }
+
+    // TCOD::quit();
+
+    return EXIT_SUCCESS;
+  }
+
+} // tcode
 
 #endif // USE_LIBTCOD
 
@@ -199,6 +179,7 @@ display_extended_ascii_chart()
       << std::showbase << std::hex << std::setw( 2 ) << i
       << ": " << static_cast< wchar_t >( i ) << " ";
   }
+  std::cout << std::endl;
 }
 
 int
@@ -208,12 +189,12 @@ main( int argc, char * argv[] )
     << "Welcome to OSRogueL version " OSRL_VERSION_STRING " distributed under the terms of the " OSRL_LICENCE
     << std::endl;
 
-  std::cout << std::endl;
+#if 0
   display_extended_ascii_chart();
-  std::cout << std::endl;
+#endif
 
 #if USE_LIBTCOD
-  return libtcod_main( argc, argv );
+  return osrl::tcod::main( argc, argv );
 
 #else // USE_LIBTCOD
   return EXIT_SUCCESS;
