@@ -49,8 +49,8 @@ namespace osrl
     using const_pointer = std::add_pointer< std::add_const_t< T > >;
     */
 
-    static constexpr this_type north() { return { 0, +1 }; }
-    static constexpr this_type south() { return { 0, -1 }; }
+    static constexpr this_type north() { return { 0, -1 }; }
+    static constexpr this_type south() { return { 0, +1 }; }
     static constexpr this_type east() { return { +1, 0 }; }
     static constexpr this_type west() { return { -1, 0 }; }
 

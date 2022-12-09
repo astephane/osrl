@@ -70,7 +70,7 @@ namespace
 
   constexpr int height() noexcept
   {
-    return 80;
+    return 50;
   }
 } // namespsace
 
@@ -88,11 +88,11 @@ namespace osrl::tcod
       switch( key.vk )
       {
       case TCODK_UP:
-        a = std::make_unique< move_action >( vec2i::south() );
+        a = std::make_unique< move_action >( vec2i::north() );
         break;
 
       case TCODK_DOWN:
-        a = std::make_unique< move_action >( vec2i::north() );
+        a = std::make_unique< move_action >( vec2i::south() );
         break;
 
       case TCODK_LEFT:
