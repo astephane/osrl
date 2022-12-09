@@ -126,7 +126,7 @@ namespace osrl::tcod
     {
         assert( actor );
 
-        TCODConsole::root->putChar( actor->pos.x, actor->pos.y, actor->get_body() );
+        TCODConsole::root->putChar( actor->pos.x, actor->pos.y, actor->body );
     }
 
     TCODConsole::flush();

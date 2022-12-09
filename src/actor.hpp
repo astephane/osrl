@@ -42,15 +42,10 @@ namespace osrl
     using action_pointer = std::unique_ptr< action >;
     using input_pointer = std::weak_ptr< in_component >;
 
-    actor( char c, input_pointer && in_ ) noexcept :
+    actor( int c, input_pointer && in_ ) noexcept :
       body( c ),
       in( std::move( in_ ) )
       {}
-
-    char get_body() const noexcept
-    {
-      return body;
-    }
 
     void set_next_action( action_pointer && a ) noexcept
     {
@@ -68,9 +63,7 @@ namespace osrl
     input_pointer in;
     action_pointer next_action;
     vec2i pos;
-
-  private:
-    char body;
+    int body;
   };
 
 
