@@ -33,3 +33,7 @@
 
 # Backup files
 *~
+
+# Rust
+**/Cargo.lock
+**/target/*
